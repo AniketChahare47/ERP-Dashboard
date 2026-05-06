@@ -1,21 +1,17 @@
-const connectToMongo = require('./db'); // Import MongoDB connection
-const express = require('express');
-const cors = require('cors');
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
 
-connectToMongo(); // Connect to MongoDB
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
 
-const app = express();
-const port = 5000; // Backend port
-
-// Middleware
-app.use(express.json());
-app.use(cors({ origin: "http://localhost:3000" })); // Allow React frontend
-
-// Routes
-app.use('/api/auth', require('./routes/auth'));   // Auth routes
-app.use('/api/notes', require('./routes/notes')); // Notes routes
-
-// Start server
-app.listen(port, () => {
-  console.log(`App listening at http://localhost:${port}`);
-});
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
